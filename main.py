@@ -5,7 +5,7 @@ from tkinter.messagebox import * #importamos los MessageBox
 root = Tk()
 root.title("Calcular Sueldo")
 root.iconbitmap('./assets/img/favicon.ico')
-root.geometry("500x300")
+root.geometry("300x360")
 root.resizable(0,0)
 
 # Se establecen las constantes
@@ -15,9 +15,12 @@ TURNOS = ["DIURNO","NOCTURNO"]
 BONO_NOCTURNO = 0.45 # Esto es equivalente al 45% de cualquier monto
 HORA_EXTRA = 40
 
+logo = PhotoImage(file="./assets/img/Icon.png")
 
 #Estilos comunes entre widgets
-fuente1 = ["Roboto",10,"bold"]
+fuente_general = ["Roboto",10]
+fuente_títulos = ["Roboto",12,"bold"]
+fuente_header = ["Roboto",10,"bold"]
 
 #Función auxiliar para obtener el sueldo según su cargo
 def obtener_sueldo_base(cargo):
@@ -65,17 +68,26 @@ def calcular_sueldo():
   showinfo(title="Total a Pagar",message=f"Su sueldo neto es {sueldo_neto}")
   return
 
-cargo_seccionado = ttk.Combobox(root,state="readonly",values=CARGOS,font=fuente1)
+main_frame = LabelFrame(root,text="Asignación de Pago",labelanchor="n",font=fuente_títulos)
+main_frame.pack(ipadx=25,ipady=40,padx=40,pady=10)
+
+Label(main_frame,image=logo).pack()
+
+
+Label(main_frame,text="Tipo de Personal",font=fuente_header).pack(pady=5)
+cargo_seccionado = ttk.Combobox(main_frame,state="readonly",values=CARGOS,font=fuente_general)
 cargo_seccionado.pack()
 
-turno_seccionado = ttk.Combobox(root,state="readonly",values=TURNOS,font=fuente1)
+Label(main_frame,text="Turno Laboral",font=fuente_header).pack(pady=5)
+turno_seccionado = ttk.Combobox(main_frame,state="readonly",values=TURNOS,font=fuente_general)
 turno_seccionado.pack()
 
-horas_extras = Entry(root,justify="center",font=fuente1)
-horas_extras.pack(pady=5)
+Label(main_frame,text="Horas Extras:",font=fuente_header).pack(pady=5)
+horas_extras = Entry(main_frame,justify="center",font=fuente_general)
+horas_extras.pack()
 
-Button(root,text="Calcular Sueldo",command=calcular_sueldo).pack()
-Button(root,text="Salir",command=root.destroy).pack(pady=3,ipadx=10,ipady=3)
+Button(main_frame,text="Calcular Sueldo",command=calcular_sueldo, bg="#fc0",padx=40,pady=5,font=fuente_header).pack(pady=10)
+Button(main_frame,text="Salir",command=root.destroy,bg="#be4c54",pady=5,padx=40,font=fuente_header,fg="#fff").pack()
 
 
 
