@@ -6,6 +6,10 @@ Este es un proyecto básico de una **App** en Python3 haciendo uso de la bibliot
 - Calcula las asignaciones por Horas Extras
 - Generar un Balance General del Sueldo Neto
 
+## Imágenes
+![Pantalla Principal](./assets/img/1.png "App")
+![Ingreso de Datos](./assets/img/4.png "Datos")
+![Reporte](./assets/img/5.png "Result")
 ### Autor
 [César Grisel](mailto:griselcesar@gmail.com)
 
